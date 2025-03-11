@@ -53,7 +53,7 @@ router.get('/callback', (req, res) => {
 router.get('/token', (req, res) => {
   var token = process.env.ACCESS_TOKEN;
   console.log(token);
-  if (token !== '') {
+  if (token !== '' && token !== undefined) {
     console.log('oui');
     res.json(
       {
