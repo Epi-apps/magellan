@@ -4,29 +4,29 @@ import Home from './components/Home';
 
 function App() {
 
-  const [token, setToken] = useState('');
+    const [token, setToken] = useState('');
 
-  useEffect(() => {
+    useEffect(() => {
 
-    async function getToken() {
-      try {
-        const response = await fetch('http://localhost:5000/auth/token');
-        const json = await response.json();
-        setToken(json.access_token);
-      } catch(error) {
-        console.log(error);
-      }
-    }
+        async function getToken() {
+            try {
+                const response = await fetch('http://localhost:5000/auth/token');
+                const json = await response.json();
+                setToken(json.access_token);
+            } catch (error) {
+                console.log(error);
+            }
+        }
 
-    getToken();
+        getToken();
 
-  }, []);
+    }, []);
 
-  return (
-    <div className='h-screen w-screen bg-black text-white'>
-        { (token === '') ? <Login/> : <Home accessToken={token}/> }
-    </div>
-  );
+    return (
+        <div className='h-screen w-screen bg-black text-white'>
+            {(token === '') ? <Login /> : <Home accessToken={token} />}
+        </div>
+    );
 }
 
 export default App;

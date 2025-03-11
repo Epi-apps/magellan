@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
 const authRoutes = require('./routes/auth.js');
+const githubRoutes = require('./routes/github.js');
 const cors = require('cors');
 
 
@@ -13,7 +14,8 @@ app.use(cors({
 }));
 
 app.use('/auth', authRoutes);
+app.use("/github", githubRoutes)
 
 app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}`);
+    console.log(`Listening at http://localhost:${port}`);
 });
