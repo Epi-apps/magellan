@@ -1,0 +1,54 @@
+[
+    {
+        "name": "Empty",
+        "gitUrl": "https://github.com/daytonaio/empty"
+    },
+    {
+        "name": "Alpine",
+        "gitUrl": "https://github.com/daytonaio/sample-alpine"
+    },
+    {
+        "name": "Debian",
+        "gitUrl": "https://github.com/daytonaio/sample-debian"
+    },
+    {
+        "name": "Ubuntu",
+        "gitUrl": "https://github.com/daytonaio/sample-ubuntu"
+    },
+    {
+        "name": "C/C++",
+        "gitUrl": "https://github.com/daytonaio/sample-cpp"
+    },
+    {
+        "name": "C# (.NET)",
+        "gitUrl": "https://github.com/daytonaio/sample-dotnet"
+    },
+    {
+        "name": "Go",
+        "gitUrl": "https://github.com/daytonaio/sample-go"
+    },
+    {
+        "name": "Java",
+        "gitUrl": "https://github.com/daytonaio/sample-java"
+    },
+    {
+        "name": "PHP",
+        "gitUrl": "https://github.com/daytonaio/sample-php"
+    },
+    {
+        "name": "Python",
+        "gitUrl": "https://github.com/daytonaio/sample-python"
+    },
+    {
+        "name": "Ruby",
+        "gitUrl": "https://github.com/daytonaio/sample-ruby"
+    },
+    {
+        "name": "Rust",
+        "gitUrl": "https://github.com/daytonaio/sample-rust"
+    },
+    {
+        "name": "Node / TypeScript",
+        "gitUrl": "https://github.com/daytonaio/sample-typescript-node"
+    }
+]

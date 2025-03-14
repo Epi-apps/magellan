@@ -12,6 +12,7 @@ export default function CreateRepoForm({ accessToken }: CreateRepoFormProps) {
     const [message, setMessage] = useState(null);
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([]);
+    const [keyword, setKeyword] = useState('');
 
     console.log(accessToken);
 
@@ -50,6 +51,49 @@ export default function CreateRepoForm({ accessToken }: CreateRepoFormProps) {
             setResults(json);
         } catch (error) {
             console.log('Error fetching search results:', error);
+        }
+    };
+
+    const handleDownloadRepo = async (repoUrl) => {
+        try {
+            const response = await fetch('http://localhost:5000/github/download_repo', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ repoUrl })
+            });
+            if (response.ok) {
+                setMessage('✅ Repository download initiated on the server.');
+            } else {
+                console.log('Error initiating repository download:', response.statusText);
+                setMessage('❌ Error initiating repository download.');
+            }
+        } catch (error) {
+            console.log('Error initiating repository download:', error);
+            setMessage('❌ Error initiating repository download.');
+        }
+    };
+
+    const handleDownloadByKeyword = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('http://localhost:5000/downloader/download', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ keyword })
+            });
+            if (response.ok) {
+                setMessage('✅ Repository download initiated on the server.');
+            } else {
+                console.log('Error initiating repository download:', response.statusText);
+                setMessage('❌ Error initiating repository download.');
+            }
+        } catch (error) {
+            console.log('Error initiating repository download:', error);
+            setMessage('❌ Error initiating repository download.');
         }
     };
 
@@ -106,11 +150,29 @@ export default function CreateRepoForm({ accessToken }: CreateRepoFormProps) {
                 </form>
                 <div className='mt-4'>
                     {results.map((result, index) => (
-                        <div key={index} className='p-2 border-b border-gray-700'>
+                        <div key={index} className='p-2 border-b border-gray-700 flex justify-between items-center'>
                             {result.name}
+                            <button
+                                onClick={() => handleDownloadRepo(result.html_url)}
+                                className='bg-green-500 text-white py-1 px-2 rounded hover:bg-green-600'
+                            >
+                                Download
+                            </button>
                         </div>
                     ))}
                 </div>
+            </div>
+            <div className="bg-slate-500 p-6 rounded-lg shadow-lg w-full max-w-md mt-6">
+                <h2 className="text-xl font-bold mb-4 text-center">Download Repository by Keyword</h2>
+                <form onSubmit={handleDownloadByKeyword}>
+                    <input
+                        type='text'
+                        value={keyword}
+                        onChange={(e) => setKeyword(e.target.value)}
+                        className='w-full mt-1 p-2 border rounded text-black'
+                    />
+                    <button type='submit' className='w-full bg-green-500 text-white py-2 rounded hover:bg-green-600 mt-2'>Download</button>
+                </form>
             </div>
         </div>
     );
